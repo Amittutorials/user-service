@@ -3,6 +3,7 @@ package com.user.details.userservice.controller;
 import com.user.details.userservice.model.UserEntity;
 import com.user.details.userservice.repository.UserRepository;
 
+import com.user.details.userservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,18 +13,14 @@ import java.util.List;
 @RequestMapping("/user")
 public class  UserController {
  @Autowired
- UserRepository userRepository;
+   private UserService userService;
 @PostMapping
 public UserEntity createUserEntity(@RequestBody UserEntity user)
-
 {
-    return userRepository.save(user);
-
-
+    return userService.createUserEntity(user);
 }
 @GetMapping("/getAllUserDetails")
-    public List<UserEntity> getUserEntity(){
-    return  userRepository.findAll();
+    public List<UserEntity> getAllUser(){
+    return  userService.getAllUser();
 }
-
 }
