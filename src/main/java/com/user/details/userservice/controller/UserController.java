@@ -13,7 +13,7 @@ import java.util.List;
 public class  UserController {
  @Autowired
  UserRepository userRepository;
-@PostMapping("/usersave")
+@PostMapping
 public UserEntity createUserEntity(@RequestBody UserEntity user)
 
 {
@@ -21,9 +21,9 @@ public UserEntity createUserEntity(@RequestBody UserEntity user)
 
 
 }
-@GetMapping("/getalluserdetails")
+@GetMapping("/getAllUserDetails")
     public List<UserEntity> getUserEntity(){
-    return (List<UserEntity>) userRepository.findAll();
+    return  userRepository.findAll();
 }
 
 }
