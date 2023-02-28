@@ -4,6 +4,8 @@ import com.user.details.userservice.model.UserEntity;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository <UserEntity, Integer > {
+import java.util.List;
 
+public interface UserRepository extends JpaRepository <UserEntity, Integer > {
+    public List<UserEntity> findById(int id);
 }
