@@ -32,7 +32,12 @@ public class  UserController {
     }
     @PutMapping("/updateUser/{id}")
     public UserEntity updateUser(@RequestBody UserEntity user,@PathVariable Integer id) {
-      userService.updateUserDetails(id,user);
+        userService.updateUserDetails(id,user);
         return user;
     }
+    @DeleteMapping("/getAllUserDetails/{id}")
+    public void deleteUserDetails(@PathVariable Integer id) {
+        userService.userDelete(id);
+    }
+
 }
