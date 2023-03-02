@@ -21,19 +21,18 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public List<UserEntity> getUserDetails(int id) {
+    public Optional<UserEntity> getUserDetails(int id) {
         return userRepository.findById(id);
     }
 
-    public UserEntity updateUserDetails(Integer id, UserEntity user) {
-        Optional<UserEntity> existingUser = userRepository.findById(id);
+    public UserEntity updateUserDetails(UserEntity user) {
+        Optional<UserEntity> existingUser = userRepository.findById(user.getId());
         if (existingUser.isPresent()) {
             UserEntity updatedUser = existingUser.get();
             updatedUser.setUserName(user.getUserName());
             updatedUser.setPassword(user.getPassword());
             updatedUser.setUserAge(user.getUserAge());
             userRepository.save(updatedUser);
-
         }
         return user;
     }
@@ -43,5 +42,7 @@ public class UserService {
 
     }
 
-
+    public List<UserEntity> getAllUserDetailsByName(String userName) {
+       return userRepository.findByUserName(userName);
+    }
 }
