@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/user")
@@ -27,17 +28,22 @@ public class  UserController {
     }
 
     @GetMapping("/getUserDetails/{userId}")
-    public List<UserEntity> getUserDetails(@PathVariable("userId") int id) {
+    public Optional<UserEntity> getUserDetails(@PathVariable("userId") int id) {
         return userService.getUserDetails(id);
     }
     @PutMapping("/updateUser/{id}")
-    public UserEntity updateUser(@RequestBody UserEntity user,@PathVariable Integer id) {
-        userService.updateUserDetails(id,user);
+    public UserEntity updateUser(@RequestBody UserEntity user) {
+        userService.updateUserDetails(user);
         return user;
     }
     @DeleteMapping("/getAllUserDetails/{id}")
-    public void deleteUserDetails(@PathVariable Integer id) {
+    public void deleteUserDetails(@PathVariable int id) {
         userService.userDelete(id);
+    }
+    @GetMapping("/getUserDetails")
+    public List<UserEntity> getAllUserDetailsByName(@RequestParam(name = "userName") String userName) {
+       return userService.getAllUserDetailsByName(userName);
+
     }
 
 }
